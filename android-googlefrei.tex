@@ -1,0 +1,649 @@
+\documentclass{beamer} 
+%\documentclass[handout]{beamer} 
+
+% Michael Maier, 2016.
+% CC-0
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\title{Android Googlefrei} 
+\author{Michael Maier \textless Michael.Maier@mailbox.org\textgreater} 
+\date{26. April 2016} 
+
+\usetheme{Antibes}
+
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=white}
+
+%\usebackgroundtemplatei{
+%\includegraphics[width=\paperwidth,
+%height=0.8\paperheight]{mag_map.png}
+%}
+
+\begin{document}
+
+%\maketitle
+
+\begin{frame} 
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.5\textwidth]{mag_map.png}
+\end{figure}
+
+\begin{center}
+\Huge{OpenStreetMap\\}
+\end{center}
+
+\begin{center}
+\Large{\emph{Selbsterfasste Daten als Grundlage für Navigation}}
+\end{center}
+
+\end{frame}
+
+
+\section{Einleitung}
+
+
+\begin{frame}{Vorstellung}
+
+  \begin{itemize}
+    \item Michael Maier \textless \href{mailto:Michael.Maier@mailbox.org}{Michael.Maier@mailbox.org}\textgreater
+    \item Student an der TU Graz (Telematik)
+\vspace{0.3cm}
+    \item Linux-User (Debian/grml) seit 2004
+    \item Organisiere Grazer Linuxtage seit 2011 mit
+    \item OpenStreetMap als Hobby seit Juli 2010
+    \item Leite den Grazer OSM-Stammtisch seit Mai 2011
+\vspace{0.3cm}
+    \item Freiberuflich OSM-Aufträge und Consulting
+    \item "`Regular"' bei der Cryptoparty Graz
+  \end{itemize}
+\end{frame}
+
+War lange Zeit Smartphone-Verweigerer
+
+Unfreie Systeme wie iOS kommen sowieso nicht in Frage
+
+Angefangen mit OpenMoko ... Da läuft auch Debian
+  War ein guter Mobilcomputer, als Telefon leider nicht praktikabel (Sprachqualität)
+
+Laaange Pause, Android lange mit Sorge beobachtet
+
+Dann kam das Fairphone
+  Es kommt gerootet und ohne Google
+  Und es ist auch noch ein wenig Fairer als andere
+
+Einige Monate paralell zu 6310i als Organizer verwendet, bis ich es geschafft hab alles so einzurichten, wie vom 
+
+
+
+% Folien zu
+% * kurze OSM-Vorstellung, Geschichtliches, Motivation
+%  1. OSM-Vorstellung
+  % was ist es
+  % wer steckt dahinter?
+% Geschichtliches
+  % Gegründet ... steve
+  % user-wachstum
+% Motivation
+  % gegründet, weil es keine freien Geodaten gab
+  % Wunschtraum: eine DB weltweit
+
+\begin{frame}{Was ist OpenStreetMap}
+
+\begin{itemize}
+  \item OpenStreetMap (OSM) ist eine freie Weltkarte nach dem Wiki-Prinzip "`Wikipedia der Karten"'
+    \begin{itemize}
+      \item \emph{Eigentlich eine Geo-Datenbank}
+    \end{itemize}
+\pause
+  \item Entsteht aus der Arbeit von \textgreater 2,5\,M Hobbykartografen "`\emph{Mapper}"'
+
+ \item Das komplette "`planet file"' ist ca. 74\,GB groß (xml.bz2) (Mittwoch):
+  \begin{itemize}
+    \item 3.297.315.809 Nodes
+    \item 339.736.038 Ways
+    \item 4.126.808 Relations
+  \end{itemize}
+
+ \begin{center}
+ \includegraphics[width=5.5cm]{sotm.jpg}
+ \end{center}
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Warum OpenStreetMap?}
+
+\hspace{0.5cm}Es beginnt 2004 mit einer Geschichte: 
+  \vspace{0.3cm}
+
+Ein Student ärgert sich, dass es in UK keine freien Geodaten gibt. 
+  \vspace{0.3cm}
+
+\parbox{9.5cm}{Die Daten auf streetmap.co.uk wurden mit Steuergeldern erstellt, man kann die Rohdaten jedoch nicht frei verwenden.}
+\hfill
+\raisebox{\dimexpr-\height+\baselineskip}{\includegraphics[height=1cm]{traurig.png}}
+
+  \vspace{0.6cm}
+\pause
+
+Warum muss man für etwas, was bereits von der Allgemeinheit mit Steuergeld bezahlt wurde, nocheinmal bezahlen?
+  \vspace{0.3cm}
+
+\parbox{9.1cm}{Und darf es selbst dann nicht frei Nutzen? \\Doppelbesteuerung ist zumindest bei uns verboten?}
+\hfill 
+\raisebox{\dimexpr-\height+\baselineskip}{\includegraphics[height=1cm]{grantig.png}}
+
+\pause
+
+ \parbox{7.5cm}{\vspace{0.4cm}\hspace{0.5cm}$\Longrightarrow$ \hspace{0.5cm}Er gründet OpenStreetMap!} 
+\raisebox{\dimexpr-\height+\baselineskip}{\includegraphics[height=1.2cm]{laugh.png}}
+
+\end{frame}
+
+
+\begin{frame}{Wer steht hinter OpenStreetMap}
+
+  \begin{itemize}
+    \item OpenStreetMap Foundation (Server, Rechtliche Vertretung)
+      \pause
+    \item Mapper ($\sim$60.000 aktiv), meist ohne Geo-Hintergrund
+    \begin{itemize}
+      \item Jährliche Konferenz - "`State of the Map"', heuer: Brüssel
+    \end{itemize}
+      \pause
+    \item Universitäten
+    \begin{itemize}
+      \item Bakk-, Master- und Doktorarbeiten mit OSM
+      \item Server-Hosting
+    \end{itemize}
+      \pause
+    \item Organisationen, die Daten sponsern
+    \begin{itemize}
+      \item Firmen wie Yahoo/Bing, die Luftbilder zur Verfügung stellen
+      \item Regierungen mit besseren Open-Data-Gesetzen als Österreich
+  % BSP TIGER, USA
+  % Dänemark, Hausnummern
+  % Frankreich,Tschechien: Kataster
+    \end{itemize}
+      \pause
+    \item Firmen die mit OSM arbeiten, z.B.:
+    \begin{itemize}
+      \item Geofabrik (de)
+      \item MapBox (us)
+      \item BikeCitizens (Graz)
+    \end{itemize}
+  \end{itemize}
+
+
+
+\end{frame}
+
+%  
+%{
+% \usebackgroundtemplate{\includegraphics[height=10cm]{Osmdbstats2_users.png}}
+%
+%\begin{frame}{Geschichte von OpenStreetMap}
+%  \vspace{0.6cm}
+%\begin{itemize}
+%  \item Start des Projekts im August 2004 durch \emph{Steve Coast}
+%  \item Dezember 2006 - Yahoo erlaubt abzeichnen
+%  \item Juli 2007 - Erste Konferenz, "`State Of The Map"'
+%  \item August 2007 - 10.000 Registrierte Benutzer
+%  \item März 2009 - 100.000 Registrierte Benutzer
+%  \item November 2010 - Bing erlaubt abzeichnen
+%  \item Juli 2011 - Erste "`State Of The Map Europe"' in Wien
+%  \item Januar 2013 - 1.000.000 Registrierte Benutzer
+%  \item Feb 2013 - Switchover to 64-bit 
+%  \item Gestern -  Registrierte Benutzer
+%\end{itemize}
+%
+%\end{frame}
+%}
+%
+
+
+\section{Wie funktioniert OpenStreetMap?}
+% * Technogie, Datenmodell, Lizenz
+
+\begin{frame}{Woher kommen unsere Daten?}
+
+\begin{itemize}
+  \item Ursprünglich: GPS-Tracks
+  \item Freiwillige tragen ihr Wissen bei: Jeder weiß viel über seine Umgebung:
+	\begin{itemize}
+	  \item Hausnummern, Straßennamen,
+	  \item Restaurants, Bars, POIs, \dots
+  \end{itemize}
+  \pause
+  \item Bei Mapping-Parties werden \\ gezielt Gebiete verbessert
+\end{itemize}
+
+  \vspace{0.4cm}
+ 99\% Handarbeit!
+
+  \vspace*{-2.9cm}
+ \hfill \includegraphics[width=4.2cm]{alps_mp.jpg}
+
+
+  \pause
+\begin{itemize}
+  \item Hin und wieder Importe aus Open Government Data
+  \begin{itemize}
+    \item USA, TIGER Data (2008)
+    \item Dänemark, Hausnummern (laufend synchronisiert)
+    \item Wien, Baumkataster
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\subsection{Technologie}
+
+% 100% freie Software
+% → jeder kann den Software-Stack verwenden http://openaviationmap.org/
+% Quality Assurance
+% * Es gibt automatische Q/A-Tools
+% * kaum Streitfälle - wenn dann Mailinglist, Data Working Group
+% * 
+% tolle Bilder herzeigen!
+% * irgendein Zoo
+% * 3D -FIXME
+% * Tolle Kartenstile:
+%     * OSM-Fr?
+%     * stamen watercolor
+%     * pistemap
+%     * bicycle map
+%     * OpenSeaMap
+
+
+
+\begin{frame}{Serverinfrastruktur}
+Es gibt eine zentrale Datenbank (PostgreSQL/PostGIS) für Schreibzugriffe (in GB).\\
+\pause
+Diese wird weltweit gespiegelt für Lesezugriffe mit unterschiedlichen Methoden:
+
+\begin{itemize}
+  \item API-Lesezugriffe über mehrere Spiegel-Server lastverteilt
+  \item Rendering-Server nutzen eine lokale, minütlich aktualisierte Datenbank
+  \begin{itemize}
+    \item Tileserver über GeoDNS weltweit verteilt (meist von Sponsoren)
+  \end{itemize}
+  \item Extrakte zum Download siehe \href{http://wiki.osm.org/Planet}{wiki.osm.org/Planet}
+  \item Für räumliche SQL-Abfragen: Overpass API, zB alle italienischen Restaurants in Wien
+\end{itemize}
+
+\end{frame}
+
+
+\subsection{Lizenz}
+
+\begin{frame}{Lizenz}
+
+  Die Daten stehen unter der \emph{Open Database Licence} - Entspricht etwa Creative Commons - Attribution - Sharealike für Daten.
+
+ \begin{center}
+ \includegraphics[width=1cm]{ODbL.png}
+ \hspace{2cm}
+ \includegraphics[width=1.5cm]{cc-by-sa.pdf}
+ \end{center}
+
+\pause
+
+\vspace*{-0.3cm}
+
+\begin{itemize}
+  \item Jeder darf die Daten, auch kommerziell verwenden, jedoch:
+  \begin{itemize}
+    \item Attribution "`OpenStreetMap \& Contributors, ODbL"' angeben!
+    \item Share-Alike: Wer die Daten verändert, muss sie unter derselben Lizenz veröffentlichen!
+    \item Diese "`virale Lizenz"' stellt sicher, dass Verbesserungen nicht in den Silos von Konzernen verschwinden, sondern der Allgemeinheit weiter zur Verfügung stehen
+  \end{itemize}
+
+\end{itemize}
+
+
+\pause
+Die Web-Karten auf \href{http://osm.org}{openstreetmap.org} sind CC-BY-SA.
+\begin{itemize}
+  \item Beachte Tile Usage Policy!
+\end{itemize}
+
+
+\end{frame}
+
+%
+%\begin{frame}{Versionierung}
+%
+%Der komplette Datenbestand steht unter Versionskontrolle.
+%\begin{itemize}
+%  \item Auszüge können für beliebige Zeitpunkte erstellt werden
+%  \item Spiegel-DB mit inkrementellen diffs minütlich aktualisierbar
+%  \item DB sicher gegen Korrumption durch parallele Edits durch Verwendung von Changesets
+%  \begin{itemize}
+%    \item Pro Tag werden $\sim$16.500 Changesets submitted
+%  \end{itemize}
+%  \item Für jedes Objekt ist seine gesamte Historie abrufbar
+%\end{itemize}
+%
+%% \vspace*{-3cm}
+% \hfill \includegraphics[width=8cm]{history.png}
+%
+%
+%\end{frame}
+
+%\begin{frame}{Toolchain für Web-Karten}
+%
+%Wie funktioniert die Kartenanzeige im Browser?
+%\pause
+%
+%\begin{itemize}
+%  \item Javascript-Framework (zB Leaflet) lädt on Demand Kacheln (Tiles) vom Server
+%  \item Die Tiles werden von  Apache mit \emph{mod-tile} ausgeliefert
+%  \item mod-tile kontaktiert den Queue-Manager \emph{Tirex} für Renderjobs
+%  \item Tirex rendert mittels \emph{Mapnik}
+%  \begin{itemize}
+%    \item Mapnik-Stile sind XML, das mittels CartoCSS generiert wird
+%  \end{itemize}
+%  \item Mapnik bekommt die Daten von einer PostGIS-DB
+%  \item PostGIS-DB wird minütlich vom Hauptserver upgedated
+%\end{itemize}
+%
+%Siehe Howto auf \url{http://switch2osm.org/}
+%
+%\end{frame}
+%
+%
+%% QA -TODO
+%
+%\begin{frame}{Qualitätssicherung}
+%Ähnlich Wikipedia, jeder darf alles ändern!
+%  \begin{columns}[c]
+%    \begin{column}[T]{.35\textwidth}
+%      \vspace{1cm}
+%      \includegraphics[width=4.5cm]{unconnected.jpg} \\
+%      {\TINY CC-BY \url{http://www.bodenseepeter.de}}
+%    \end{column}
+%    \pause
+%    \begin{column}[T]{.7\textwidth}
+%      \begin{itemize}
+%        \item Jedoch konfliktfreier als bei Wikipedia:
+%        \begin{itemize}
+%          \item Es gibt in OSM nur "`Ground Truth"'
+%          \item Eintrittsschwelle ist höher (keine Anonymous edits)
+%        \end{itemize}
+%        \item Erfahrene Mapper kontrollieren ihr Gebiet mittels RSS-Feed
+%        \pause
+%        \item Eingebautes Social Network: Jeder Mapper kann persönlich kontaktiert werden
+%        \begin{itemize}
+%          \item Diskussion über die Mailingliste
+%        \end{itemize}
+%        \pause
+%        \item Automatische Qualitätssicherungs-Tools
+%        \begin{itemize}
+%          \item \href{http://keepright.ipax.at/report\_map.php?zoom=14&lat=48.20808&lon=16.37221}{keepright.ipax.at}
+%        \end{itemize}
+%      \end{itemize}
+%
+%    \end{column}
+%  \end{columns}
+%
+%\end{frame}
+%
+
+
+\section{OpenStreetMap Nutzen}
+
+\subsection{Rohdaten}
+
+\begin{frame}{OSM-Daten Downloaden}
+
+	Download von Rohdaten im osm-xml Format:
+\begin{itemize}
+	\item kleinen Bereich: \href{http://osm.org}{osm.org}, Export
+	\item Full Planet: \href{http://planet.osm.org}{planet.osm.org}
+	\item Länderextrakte: \href{http://download.geofabrik.de}{geofabrik.de}
+	\item SQL-Like API: Overpass, Webinterface: \href{http://overpass-turbo.eu}{overpass-turbo.eu}
+\end{itemize}
+\pause
+Export in andere Formate: 
+\begin{itemize}
+	\item Bilder (PNG, JPG, SVG, PDF): \href{http://osm.org}{osm.org}, "`Share"'-Icon rechts
+	\item Shapefiles: \href{http://download.geofabrik.de}{geofabrik.de} (Limitierte Spalten)
+	\item GeoJSON: \href{http://overpass-turbo.eu}{overpass-turbo.eu}
+\end{itemize}
+
+\end{frame}
+
+\subsection{Dienste}
+
+\begin{frame}{Dienste}
+	Was bietet OpenStreetMap:
+\begin{itemize}
+	\item Web-Karten zum Einbetten als HTML: \href{http://osm.org}{osm.org}, "`Share"'-Icon rechts
+		\pause
+	\item Links auf jedes einzelne OSM-Objekt; Marker
+		\pause
+	\item Geocoder: \href{http://nominatim.osm.org}{nominatim.osm.org}, Suche auf osm.org
+		\pause
+	\item Routing-Dienste für Auto, Fahrrad, Rollstuhl, \dots
+\end{itemize}
+
+\pause
+Apps:
+\begin{itemize}
+   \item  Android ( \textgreater 100) \url{http://wiki.osm.org/Android}
+   \item  iPhone ( \textgreater 70 )  \url{http://wiki.osm.org/Apple\_iOS}
+   \item  Windows Phone ( 18 ) \url{http://wiki.osm.org/Windows\_Phone}
+   \item  Blackberry ( 10 ) \url{http://wiki.osm.org/BlackBerry\_OS}
+ \end{itemize}
+
+\end{frame}
+
+\section{Selbsterfasste Daten als Grundlage für Navigation}
+
+\begin{frame}{Was wird erfasst?}
+
+Praktisch Alles was einen Geobezug hat!
+
+\pause
+
+\begin{itemize}
+  \item Straßen- und Wegenetz, Schiffahrtsrouten, Skipisten, \dots
+  \item Flächen (Bewuchs, Landnutzung, Schutzzonen)
+  \item POI-Eigenschaften wie Kontaktdaten, Öffnungszeiten, Rollstuhleignung, \dots
+\end{itemize}
+
+\pause
+
+Tagging: 
+
+Jedes Element kann beliebige Anzahl Eigenschaften haben.
+Diese "`Tags"' genannten key=value Paare sind Freitext -- z.B.:
+\begin{itemize}
+  \item highway = footway 
+  \item footway = sidewalk 
+  \item surface = paved 
+\end{itemize}
+
+Dadurch ist man zu 100\% flexibel - Standards werden im Wiki festgelegt, siehe \href{http://wiki.openstreetmap.org/wiki/DE:How\_to\_map\_a}{wiki/DE:How\_to\_map\_a}
+
+\end{frame}
+
+\begin{frame}{ Straßen und Wege}
+
+Highway = *
+
+\begin{itemize}
+  \item Wegtypen: motorway, primary \dots  residential, footway, cycleway, path
+  \item Einbahnen und ihre Ausnahmen (Radfahrer etc)
+\pause
+  \item Fahrspuren: "`Lanes"'-Tagging-Modell:
+  \begin{itemize}
+    \item Abbiegespuren
+    \item Busspuren, Radstreifen
+    \item Zeitabhängige Beschränkungen "`Bus 6-9h"'
+    \item Anwendbar auf jede Eigenschaft, zB Breite
+  \end{itemize}
+ \vspace*{-2.6cm}
+\hfill\includegraphics[width=2cm]{lanes.png}
+
+\pause
+  \item Geschwindigkeitsbegrenzung: maxspeed = *
+  \item Oberfläche: Befestigt, Pflaster, Schotter, ...
+  \item Abbiegebeschränkungen: Mittels Relation from/to/via
+  \item Beleuchtet, Tonnage, Durchfahrtshöhe, Brücke/Tunnel
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Baustellen}
+
+Straßen im Bau werden natürlich auch erfasst, als eigener Wegtyp.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=7cm]{suedguertel.png}
+\end{figure}
+
+\pause
+
+\begin{itemize}
+  \item Sollen so zeitnah wie möglich eingetragen werden.
+  \item Eventuelle Ausnahmen (Fußgänger, foot=yes) berücksichtigen.
+  \item Kleine Baustellen mit construction=minor taggen, wenn nicht komplett gesperrt.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Navigationssoftware}
+
+Siehe \url{http://wiki.osm.org/Routing}
+
+ \vspace*{0.3cm}
+Serversoftware:
+
+ \vspace*{-0.3cm}
+\begin{itemize}
+  \item OpenRouteService \includegraphics[width=1cm]{ors.png}
+  \item Open Source Routing Machine (OSRM) \includegraphics[width=2cm]{osrm.png}
+  \item GraphHopper \includegraphics[width=2cm]{graphopper.png}
+  \item \dots
+\end{itemize}
+
+\pause
+
+Unterschiedliche Profile:
+\begin{itemize}
+  \item Auto - LKW, Anhänger, ...
+  \item Fahrrad - MTB, Citybike, Rennrad
+  \item Fußgänger
+  \item Rollstuhlfahrer - E-Rolli, Handrolli, Sportlich, \dots
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Praktisches Beispiel: Rollstuhlrouting}
+
+Was ist wichtig für Rollstuhlfahrer:
+
+\begin{itemize}
+  \item Bordsteinkanten: Max 3\,cm!
+  \item Breite (90\,cm)
+  \item Oberfläche (\dots Pflastersteine)
+  \item Querneigung (max 3\,\%)
+  \item Steigung (max 2,5\,\%, max. 6\,\% auf 10\,m)
+\end{itemize}
+
+\includegraphics[width=7cm]{rolliroute.png}
+
+\end{frame}
+
+
+  \subsection{ OpenStreetMap Verbessern}
+
+\begin{frame}{OpenStreetMap Verbessern}
+
+  Eine große Auswahl an Editoren steht fürs Web, Desktop- und Mobilnutzung zur Verfügung
+
+  \begin{itemize}
+    \item Web:
+    \begin{itemize}
+	    \item Hauptseite - Edit: iD (JavaScript)
+      \item oder auch einfach nur Fehler melden mit dem Note-feature auf \href{http://osm.org}{osm.org}!
+	      \pause
+    \end{itemize}
+    \item Mobile (Auswahl): Alle siehe  \href{http://wiki.openstreetmap.org/wiki/Android\#OpenStreetMap\_editing\_features}{Android}, \href{http://wiki.openstreetmap.org/wiki/Apple\_iOS\#OpenStreetMap\_editing\_features}{iOS}:
+    \begin{itemize}
+      \item Vespucci: Ausgewachsener Editor
+      \item osmaptuner: Existierende POIs ergänzen
+      \item OsmTracker: GPS-Tracks, Audio, schnell POIs hinzufügen
+    \end{itemize}
+  \item Desktop
+    \begin{itemize}
+      \item \href{http://josm.openstreetmap.de}{JOSM}
+      \item \href{http://merkaartor.be}{Merkaartor}
+      \item ArcGIS (seit 10.1)
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Hilfe}
+Fragen? 
+\begin{itemize}
+  \item Dokumentation: \href{http://wiki.openstreetmap.org}{wiki.openstreetmap.org}
+  \begin{itemize} 
+    \item Mitmachen? \href{http://learnosm.org/}{learnosm.org}
+  \end{itemize}
+  \item Immer noch etwas unklar? $\Rightarrow$ Mailingliste \href{http://lists.openstreetmap.org/listinfo/talk-at}{talk-at}
+ \vspace*{0.4cm}
+  \item Weltweite \href{http://usergroups.openstreetmap.de/}{Stammtische}
+  \begin{itemize}
+    \item 1/Monat Graz
+    \item 1/Monat Wien
+    \item 1/Monat Innsbruck
+  \end{itemize}
+ \vspace*{0.4cm}
+  \item Grazer Linuxtage, 29.-30. April
+
+\end{itemize}
+
+ \vspace*{-2.8cm}
+\hfill\includegraphics[width=5cm]{Salzburg_stammtisch.jpg}
+
+\begin{itemize}
+  \item Konferenz: \href{http://stateofthemap.org/}{State of the Map}, 23.-25. September, Brüssel
+\end{itemize}
+\end{frame}
+
+\section{Ende}
+
+\begin{frame}{Vielen Dank für die Aufmerksamkeit!}
+
+  Folien zur RegioMove 7.4.2016, Leoben
+\vspace{1cm}
+
+Erstellt mittels \LaTeX Beamer, Quelltext: \href{https://github.com/species/vortrag-osm-regiomove16}{Github/species/vortrag-osm-regiomove16}.
+\vspace{1cm}
+
+\href{mailto:michael.maier@mailbox.org}{Michael Maier}
+
+Twitter: \href{https://twitter.com/osmgraz}{@osmgraz}
+\vspace{1cm}
+
+Folien unter: \includegraphics[width=1cm]{cc-by-sa.pdf}. 
+
+Alle Daten ODbL, OpenStreetMap Contributors.
+
+\end{frame}
+
+
+
+\end{document}
